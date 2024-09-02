@@ -15,12 +15,21 @@ val quarkusPlatformVersion: String by project
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    implementation("io.quarkus:quarkus-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.quarkus:quarkus-arc")
-    implementation("io.quarkus:quarkus-rest")
+    implementation(enforcedPlatform("$quarkusPlatformGroupId:quarkus-amazon-services-bom:$quarkusPlatformVersion"))
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("software.amazon.awssdk:netty-nio-client")
+    implementation("io.quarkus:quarkus-rest-jackson")
+    implementation("io.github.oshai:kotlin-logging-jvm:6.0.9")
+    implementation("io.quarkus:quarkus-hibernate-validator")
+    implementation("jakarta.validation:jakarta.validation-api")
+    implementation("io.quarkiverse.amazonservices:quarkus-amazon-sns")
+    implementation("io.quarkiverse.amazonservices:quarkus-amazon-sqs")
+    testImplementation("com.lectra:koson:1.2.8")
+    testImplementation("io.rest-assured:rest-assured:5.4.0")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("io.rest-assured:kotlin-extensions")
+    testImplementation("software.amazon.awssdk:url-connection-client")
 }
 
 group = "org.acme"
